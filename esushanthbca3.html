@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Styled Basic Webpage</title>
+  <style>
+    /* Set a full-page background image */
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Add a semi-transparent overlay for readability */
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      font-family: 'Georgia', serif;
+      font-size: 48px;
+      color: #ffcc00;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    h2 {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 28px;
+      color: #00ffcc;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #e0e0e0;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: #ff6699;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay">
+    <h1>Welcome to My Styled Page</h1>
+    <h2>Different fonts, colors, and background images</h2>
+    <p>
+      This is a simple webpage that uses CSS to create beautiful typography and a stunning background image. 
+      You can customize fonts, colors, and backgrounds easily with CSS!
+    </p>
+    <p>
+      Visit <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">MDN CSS Docs</a> to learn more.
+    </p>
+  </div>
+
+</body>
+</html>

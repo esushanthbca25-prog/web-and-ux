@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///C:/Users/RVU/Documents/sushanth.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #C087B3;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .rating-group,
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback Form</h2>
+        <form action="file:///C:/Users/RVU/Documents/sushanth.html#" method="post">
+            <!-- Name -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required="">
+
+            <!-- Email -->
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required="">
+
+            <!-- Gender (Radio Buttons) -->
+            <label>Gender:</label>
+            <div class="radio-group">
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="Other">
+                <label for="other">Other</label>
+            </div>
+
+            <!-- Services Used (Checkboxes) -->
+            <label>What services did you use?</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="website" name="services" value="Website">
+                <label for="website">Website</label>
+                <input type="checkbox" id="mobile-app" name="services" value="Mobile App">
+                <label for="mobile-app">Mobile App</label>
+                <input type="checkbox" id="support" name="services" value="Customer Support">
+                <label for="support">Customer Support</label>
+            </div>
+
+            <!-- Satisfaction (Dropdown) -->
+            <label for="satisfaction">How satisfied are you?</label>
+            <select id="satisfaction" name="satisfaction">
+                <option value="">-- Select --</option>
+                <option value="very-satisfied">Very Satisfied</option>
+                <option value="satisfied">Satisfied</option>
+                <option value="neutral">Neutral</option>
+                <option value="dissatisfied">Dissatisfied</option>
+                <option value="very-dissatisfied">Very Dissatisfied</option>
+            </select>
+
+            <!-- Comments (Textarea) -->
+            <label for="comments">Additional Comments:</label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Write your comments here..."></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+
+
+</body></html>

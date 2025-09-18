@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Two-Column Layout: Floats & Grid</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    /* --- Float Layout --- */
+    .float-container {
+      width: 100%;
+      overflow: hidden; /* Clearfix */
+      border: 2px solid #0077cc;
+      margin-bottom: 40px;
+      padding: 10px;
+    }
+
+    .float-column {
+      width: 48%;
+      float: left;
+      background-color: #d0e7ff;
+      padding: 20px;
+      box-sizing: border-box;
+      margin-right: 4%;
+    }
+
+    .float-column:last-child {
+      margin-right: 0;
+      background-color: #a6c8ff;
+    }
+
+    /* --- Grid Layout --- */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      border: 2px solid #28a745;
+      padding: 10px;
+    }
+
+    .grid-column {
+      background-color: #d5f5e3;
+      padding: 20px;
+      box-sizing: border-box;
+      border: 1px solid #28a745;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Two-Column Layout Using Floats</h2>
+  <div class="float-container">
+    <div class="float-column">
+      <h3>Left Column (Float)</h3>
+      <p>This column floats to the left and takes about 48% of the container's width.</p>
+      <p>Floats require clearfix or overflow hidden on the container to avoid collapsing.</p>
+    </div>
+    <div class="float-column">
+      <h3>Right Column (Float)</h3>
+      <p>This column also floats left but has no right margin, completing the row.</p>
+      <p>Floats were widely used before flexbox and grid became popular.</p>
+    </div>
+  </div>
+
+  <h2>Two-Column Layout Using CSS Grid</h2>
+  <div class="grid-container">
+    <div class="grid-column">
+      <h3>Left Column (Grid)</h3>
+      <p>This column uses CSS Grid and takes half of the available space.</p>
+      <p>Grid makes layouts more flexible and easier to maintain.</p>
+    </div>
+    <div class="grid-column">
+      <h3>Right Column (Grid)</h3>
+      <p>The gap property adds space between the columns automatically.</p>
+      <p>CSS Grid is great for complex layouts but works well for simple ones too!</p>
+    </div>
+  </div>
+
+</body>
+</html>
