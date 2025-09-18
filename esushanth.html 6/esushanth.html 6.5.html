@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSS Layout Principles - Colorful Boxes</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #222;
+      line-height: 1.6;
+      padding: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    /* Container box styling */
+    .box {
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 25px 30px;
+      margin-bottom: 40px;
+      color: white;
+    }
+
+    /* Box Model Section - warm orange */
+    .box-model {
+      background-color: #ff6f61;
+      border: 3px solid #e94e3a;
+    }
+
+    /* Positioning Section - cool teal */
+    .positioning {
+      position: relative;
+      background-color: #1abc9c;
+      border: 3px solid #16a085;
+    }
+
+    .positioned-box {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background-color: #16a085;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Flexbox Section - deep purple */
+    .flexbox {
+      background-color: #8e44ad;
+      border: 3px solid #732d91;
+    }
+
+    .flex-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .flex-item {
+      flex: 1;
+      background-color: #9b59b6;
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(155, 89, 182, 0.4);
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+
+    .flex-item:hover {
+      background-color: #6c3483;
+      cursor: pointer;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 50px;
+      text-align: center;
+      color: #34495e;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px 10px;
+      color: #777;
+      font-size: 0.9rem;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CSS Layout Principles</h1>
+    <p>Master the box model, positioning, and flexbox to create structured webpage layouts.</p>
+  </header>
+
+  <section class="box box-model">
+    <h2>Master the Box Model</h2>
+    <p>
+      The CSS box model is made of content, padding, border, and margin. Knowing how to manipulate each part helps you control spacing and sizing.
+    </p>
+  </section>
+
+  <section class="box positioning">
+    <h2>Positioning</h2>
+    <p>
+      Use different positioning schemes like <code>static</code>, <code>relative</code>, <code>absolute</code>, and <code>fixed</code> to control where elements appear.
+    </p>
+    <div class="positioned-box">Absolutely Positioned</div>
+  </section>
+
+  <section class="box flexbox">
+    <h2>Flexbox</h2>
+    <p>Flexbox simplifies building responsive, flexible layouts with minimal code.</p>
+    <div class="flex-container">
+      <div class="flex-item">Flex Item 1</div>
+      <div class="flex-item">Flex Item 2</div>
+      <div class="flex-item">Flex Item 3</div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 CSS Layout Mastery
+  </footer>
+
+</body>
+</html>
