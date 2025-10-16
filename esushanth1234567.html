@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DOM Manipulation — Live Exercise</title>
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+      line-height: 1.5;
+      --primary-color: #2563eb;
+      --accent-color: #f59e0b;
+      --background: #f9fafb;
+      --card-bg: #ffffff;
+      --border-color: #d1d5db;
+      --text-color: #111827;
+      --muted-color: #6b7280;
+      --button-bg: #2563eb;
+      --button-hover-bg: #1d4ed8;
+      --button-text-color: #fff;
+      --input-border-color: #9ca3af;
+      --input-focus-border: #2563eb;
+    }
+    body {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 20px;
+      background-color: var(--background);
+      color: var(--text-color);
+    }
+    header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    header h1 {
+      color: var(--primary-color);
+      margin: 0;
+      font-weight: 700;
+    }
+    header small {
+      color: var(--muted-color);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-top: 16px;
+      box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 4px 16px rgb(0 0 0 / 0.1);
+    }
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      background: var(--button-bg);
+      color: var(--button-text-color);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      margin-top: 8px;
+      user-select: none;
+    }
+    button:hover {
+      background-color: var(--button-hover-bg);
+    }
+    button:focus-visible {
+      outline: 3px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+    .highlight {
+      background: linear-gradient(90deg, rgba(255, 230, 150, 0.6), rgba(255, 255, 255, 0));
+      padding: 8px;
+      border-radius: 6px;
+    }
+    input[type="text"] {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--input-border-color);
+      font-size: 1rem;
+      width: 100%;
+      max-width: 280px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--input-focus-border);
+      box-shadow: 0 0 4px var(--input-focus-border);
+    }
+    ul {
+      padding-left: 24px;
+      margin-top: 12px;
+    }
+    ul li {
+      margin-bottom: 8px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    ul li button.remove {
+      padding: 4px 8px;
+      background: #ef4444;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: background-color 0.25s ease;
+    }
+    ul li button.remove:hover {
+      background: #b91c1c;
+    }
+    #createdArea img {
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DOM Manipulation — Live Exercise</h1>
+    <small>Practice: create / update / remove elements & attributes</small>
+  </header>
+
+  <!-- Section 1: Changing text content -->
+  <section class="card" id="textCard">
+    <h2>Update text content</h2>
+    <p id="intro">This text will be changed when you click the button below.</p>
+    <button id="changeTextBtn">Change text</button>
+  </section>
+
+  <!-- Section 2: Using user input to update DOM -->
+  <section class="card" id="inputCard">
+    <h2>Use input to update DOM</h2>
+    <label>
+      New heading:
+      <input type="text" id="headingInput" placeholder="Type a new heading" />
+    </label>
+    <button id="applyHeading">Apply</button>
+    <h3 id="liveHeading">Original heading</h3>
+  </section>
+
+  <!-- Section 3: Add / remove list items -->
+  <section class="card" id="listCard">
+    <h2>Manage a list</h2>
+    <input type="text" id="itemInput" placeholder="New todo item" />
+    <button id="addItem">Add item</button>
+    <button id="clearList">Clear list</button>
+    <ul id="todoList">
+      <li>Example item 1 <button class="remove">Remove</button></li>
+      <li>Example item 2 <button class="remove">Remove</button></li>
+    </ul>
+  </section>
+
+  <!-- Section 4: Create element & attributes -->
+  <section class="card" id="createCard">
+    <h2>Create element & attributes</h2>
+    <button id="createImgBtn">Create image element</button>
+    <div id="createdArea"></div>
+  </section>
+
+  <!-- Section 5: Toggle class and styles -->
+  <section class="card" id="toggleCard">
+    <h2>Toggle classes & attributes</h2>
+    <p id="togText">Click the toggle button to highlight this paragraph.</p>
+    <button id="toggleBtn">Toggle highlight</button>
+  </section>
+
+  <script>
+    // --- Helper: select shortcuts ---
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+    // 1) Change text content
+    const changeTextBtn = $('#changeTextBtn');
+    const intro = $('#intro');
+    changeTextBtn.addEventListener('click', () => {
+      intro.textContent = 'Text has been updated at ' + new Date().toLocaleTimeString();
+    });
+
+    // 2) Use input to update DOM
+    $('#applyHeading').addEventListener('click', () => {
+      const val = $('#headingInput').value.trim();
+      const live = $('#liveHeading');
+      if (!val) {
+        live.textContent = 'Original heading';
+        return;
+      }
+      live.textContent = val;
+    });
+
+    // 3) Add/remove list items with event delegation
+    const todoList = $('#todoList');
+    $('#addItem').addEventListener('click', () => {
+      const text = $('#itemInput').value.trim();
+      if (!text) return;
+      const li = document.createElement('li');
+      li.innerHTML = `${escapeHtml(text)} <button class="remove">Remove</button>`;
+      todoList.appendChild(li);
+      $('#itemInput').value = '';
+    });
+
+    // Clear list
+    $('#clearList').addEventListener('click', () => {
+      while (todoList.firstChild) todoList.removeChild(todoList.firstChild);
+    });
+
+    // Event delegation for remove buttons
+    todoList.addEventListener('click', (e) => {
+      if (e.target && e.target.matches('button.remove')) {
+        const li = e.target.closest('li');
+        li.remove();
+      }
+    });
+
+    // 4) Create element and set attributes
+    $('#createImgBtn').addEventListener('click', () => {
+      const area = $('#createdArea');
+      const existing = $('#createdArea img');
+      if (existing) {
+        existing.remove();
+        return;
+      }
+      const img = document.createElement('img');
+      img.setAttribute('alt', 'Cute placeholder');
+      img.src = 'https://placekitten.com/320/180';
+      img.width = 320;
+      img.height = 180;
+      img.style.display = 'block';
+      img.style.marginTop = '8px';
+      area.appendChild(img);
+    });
+
+    // 5) Toggle class
+    $('#toggleBtn').addEventListener('click', () => {
+      $('#togText').classList.toggle('highlight');
+    });
+
+    // Utility: escape HTML
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    // Accessible: Enter key adds items
+    $('#itemInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        $('#
+
+
+

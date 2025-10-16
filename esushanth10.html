@@ -1,35 +1,70 @@
 
-Lab programs 
-Dr. Balaji V
-•
-12:35 PM
-
-prog 9.html
-HTML
-
-prog-10.html
-HTML
-
-prog-11.html
-HTML
-Class comments
-
-Add class comment…
-
-<!doctype html>
+<<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Event Handling — Interactive Demo</title>
   <style>
-    body { font-family: system-ui, sans-serif; margin: 40px auto; max-width: 800px; padding: 16px; }
-    h1 { color: #333; }
-    .card { border: 1px solid #ddd; padding: 16px; border-radius: 8px; margin-top: 16px; }
-    button, input[type="text"], input[type="email"] { padding: 8px; border-radius: 6px; border: 1px solid #ccc; }
-    button { cursor: pointer; }
-    .error { color: #c00; font-weight: bold; }
-    .success { color: #090; font-weight: bold; }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 40px auto;
+      max-width: 800px;
+      padding: 16px;
+      background-color: #1e1e2f; /* Dark background */
+      color: #e0e0e0; /* Light text */
+    }
+    h1 {
+      color: #a1caf1; /* Soft pastel blue */
+    }
+    .card {
+      background-color: #2e2e4d; /* Darker card background */
+      border: 1px solid #556677;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    button, input[type="text"], input[type="email"] {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #6ea0f8;
+      background-color: #3a3f6f;
+      color: #e0e0e0;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    button {
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5a7de8;
+    }
+    input[type="text"]:focus, input[type="email"]:focus {
+      outline: none;
+      border-color: #a1caf1;
+      background-color: #50568a;
+    }
+    .error {
+      color: #ff6f91;
+      font-weight: bold;
+    }
+    .success {
+      color: #70ffea;
+      font-weight: bold;
+    }
+    #hoverBox {
+      width: 200px;
+      height: 100px;
+      background: rgba(100, 160, 210, 0.3); /* pastel bluish */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: #e0e0e0;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -63,7 +98,7 @@ Add class comment…
   <!-- Section 4: Mouse Events -->
   <section class="card">
     <h2>Mouse Events Example</h2>
-    <div id="hoverBox" style="width:200px; height:100px; background:#eef; display:flex; align-items:center; justify-content:center; border-radius:8px;">
+    <div id="hoverBox">
       Hover over me!
     </div>
     <p id="hoverMessage">No hover detected.</p>
@@ -116,18 +151,17 @@ Add class comment…
 
     box.addEventListener('mouseenter', () => {
       hoverMsg.textContent = 'Mouse entered the box!';
-      box.style.background = '#cce5ff';
+      box.style.background = 'rgba(70, 130, 180, 0.8)'; // steelblue, stronger highlight
     });
 
     box.addEventListener('mouseleave', () => {
       hoverMsg.textContent = 'Mouse left the box!';
-      box.style.background = '#eef';
+      box.style.background = 'rgba(100, 160, 210, 0.3)'; // original pastel blue
     });
 
-    // Optional: double-click event
     box.addEventListener('dblclick', () => {
       hoverMsg.textContent = 'Box double-clicked!';
-      box.style.background = '#aaf';
+      box.style.background = '#4a6fa5'; // a deeper blue
     });
   </script>
 </body>
