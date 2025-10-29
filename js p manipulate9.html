@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulate HTML Elements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #demo {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript HTML Manipulation Example</h1>
+
+    <div id="demo">
+        <p id="text">This is a sample paragraph.</p>
+        <img id="image" src="https://via.placeholder.com/150" alt="Placeholder Image">
+    </div>
+
+    <button onclick="changeText()">Change Text</button>
+    <button onclick="changeHTML()">Change HTML</button>
+    <button onclick="changeStyle()">Change Style</button>
+    <button onclick="changeAttribute()">Change Image</button>
+    <button onclick="addElement()">Add New Element</button>
+
+    <script>
+        // Change the text content of an element
+        function changeText() {
+            document.getElementById('text').textContent = "The text has been changed!";
+        }
+
+        // Change the inner HTML of an element
+        function changeHTML() {
+            document.getElementById('demo').innerHTML = "<h2>New HTML Content</h2><p>This paragraph is added via innerHTML.</p>";
+        }
+
+        // Change CSS style dynamically
+        function changeStyle() {
+            const demoDiv = document.getElementById('demo');
+            demoDiv.style.backgroundColor = "#f0f8ff";
+            demoDiv.style.border = "2px solid #007BFF";
+            demoDiv.style.padding = "20px";
+        }
+
+        // Change an attribute of an element
+        function changeAttribute() {
+            document.getElementById('image').src = "https://via.placeholder.com/200/007BFF/ffffff";
+            document.getElementById('image').alt = "Updated Image";
+        }
+
+        // Add a new element dynamically
+        function addElement() {
+            const newPara = document.createElement("p");
+            newPara.textContent = "This paragraph was added dynamically!";
+            document.getElementById('demo').appendChild(newPara);
+        }
+    </script>
+
+</body>
+</html>

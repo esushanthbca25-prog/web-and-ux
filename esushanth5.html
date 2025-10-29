@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bengaluru South Tourism App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 20px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin: 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      margin: 20px auto;
+      padding: 20px;
+      width: 80%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      display: none;
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #004d40;
+      color: white;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧭 Bengaluru South Tourism App</h1>
+    <p>Select a category to explore top spots!</p>
+  </header>
+
+  <select onchange="showCategory(this.value)">
+    <option value="">-- Choose Category --</option>
+    <option value="places">Tourist Places</option>
+    <option value="food">Restaurants</option>
+    <option value="fun">Entertainment</option>
+  </select>
+
+  <div id="places" class="card">
+    <h2>🌳 Lalbagh Botanical Garden</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Lalbagh_Botanical_Garden.jpg" alt="Lalbagh Garden">
+    <p>A historic 240-acre garden with exotic plants and a stunning glasshouse. Perfect for nature lovers and photographers.</p>
+  </div>
+
+  <div id="food" class="card">
+    <h2>🍽️ Vidyarthi Bhavan</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Vidyarthi_Bhavan_Bangalore.jpg" alt="Vidyarthi Bhavan">
+    <p>Iconic South Indian restaurant famous for crispy masala dosas and vintage charm. A must-visit for foodies!</p>
+  </div>
+
+  <div id="fun" class="card">
+    <h2>🎉 Loco Bear Entertainment Hub</h2>
+    <img src="https://locobear.com/wp-content/uploads/2023/10/loco-bear-banner.jpg" alt="Loco Bear">
+    <p>Indoor amusement park with bowling, laser tag, trampolines, and arcade games. Fun for all ages!</p>
+  </div>
+
+  <footer>
+    <p>Made by Sushanth | Bengaluru South | 2025</p>
+  </footer>
+
+  <script>
+    function showCategory(category) {
+      const sections = ['places', 'food', 'fun'];
+      sections.forEach(id => {
+        document.getElementById(id).style.display = (id === category) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
