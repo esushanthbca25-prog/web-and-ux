@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Tourism Guide - Explore Incredible India</title>
+    <style>
+        :root {
+            /* Ink Wash Palette */
+            --primary-color: #2a2a2a;      /* Charcoal black */
+            --secondary-color: #4a4a4a;    /* Cool gray */
+            --accent-color: #f5f5f5;       /* Soft ivory */
+            --text-dark: #2a2a2a;
+            --text-light: #f5f5f5;
+            --bg-light: #f5f5f5;
+            --bg-dark: #1a1a1a;
+            --success: #27ae60;
+            --danger: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #2a2a2a 0%, #4a4a4a 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #3a3a3a 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Search Bar in Nav */
+        .search-nav {
+            display: flex;
+            gap: 10px;
+            position: relative;
+        }
+
+        .search-nav input {
+            padding: 0.6rem 1rem;
+            border: 2px solid #ffffff;
+            border-radius: 25px;
+            min-width: 250px;
+            font-size: 0.9rem;
+            background: rgba(245, 245, 245, 0.9);
+            color: var(--text-dark);
+        }
+
+        .search-nav button {
+            padding: 0.6rem 1.2rem;
+            background: #ffffff;
+            color: var(--text-dark);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .search-nav button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(42, 42, 42, 0.85), rgba(74, 74, 74, 0.85)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><path d="M0,200 Q300,100 600,200 T1200,200 L1200,400 L0,400 Z" fill="%23ffffff" opacity="0.05"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 0 0 20px 20px;
+            margin-top: -2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        /* Tabs for States */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 2rem 0;
+            overflow-x: auto;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(245, 245, 245, 0.9);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 42, 42, 0.5);
+        }
+
+        /* Destination Cards */
+        .destination-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .destination-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin: 2rem 0 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .card-type {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .card-info {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .card-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1a1a1a;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3a3a3a;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--danger);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .modal-close:hover {
+            background: #c0392b;
+        }
+
+        .modal h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-info {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #fafafa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .modal-info strong {
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-section {
+            display: none;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section.active {
+            display: block;
+        }
+
+        .about-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .about-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .search-nav input {
+                min-width: 150px;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .about-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* No results message */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* Image loading placeholder */
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">🇮🇳 India Tourism</a>
+            <ul class="nav-menu">
+                <li><a href="#" id="nav-home">Home</a></li>
+                <li><a href="#" id="nav-about">About</a></li>
+            </ul>
+            <div class="search-nav">
+                <input type="text" id="globalSearch" placeholder="Search places, restaurants...">
+                <button onclick="performGlobalSearch()">Search</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Discover Incredible India</h1>
+        <p>Explore stunning destinations, taste authentic cuisine, and experience the magic of Indian culture</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- State Tabs -->
+        <div class="tabs" id="stateTabs"></div>
+
+        <!-- Destination Sections -->
+        <div id="contentArea"></div>
+
+        <!-- About Section -->
+        <section class="about-section" id="aboutSection">
+            <h2>About India Tourism Guide</h2>
+            <p>
+                Welcome to the ultimate Indian Tourism Guide! This platform is designed to help you explore the magnificent diversity of India, from the snow-capped Himalayas to the serene beaches of the south, and from ancient temples to bustling modern cities.
+            </p>
+            <p>
+                <strong>Our Mission:</strong> To provide comprehensive, up-to-date information about India's most remarkable tourist destinations, helping travelers plan unforgettable journeys.
+            </p>
+            <p>
+                <strong>What We Offer:</strong>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li>Detailed information about tourist attractions across all major Indian states</li>
+                    <li>Authentic restaurant recommendations in each destination</li>
+                    <li>Location maps to help you navigate easily</li>
+                    <li>Historical and cultural context for each place</li>
+                    <li>Dynamic search functionality to find exactly what you're looking for</li>
+                    <li>Responsive design for seamless browsing on all devices</li>
+                </ul>
+            </p>
+            <p style="margin-top: 1.5rem;">
+                Whether you're a first-time visitor or a seasoned traveler, this guide will help you discover hidden gems and iconic landmarks across the length and breadth of India. Happy exploring!
+            </p>
+        </section>
+    </main>
+
+    <!-- Modal for Details -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle"></h2>
+            <div id="modalDetails"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 India Tourism Guide. Explore the beauty of India. | Designed with ❤️</p>
+    </footer>
+
+    <script>
+        // Real Database with images and working maps
+        const touristicData = {
+            'Uttar Pradesh': {
+                color: '#2a2a2a',
+                destinations: [
+                    {
+                        name: 'Taj Mahal',
+                        location: 'Agra',
+                        type: 'Monument',
+                        emoji: '🕌',
+                        description: 'One of the Seven Wonders of the World, a monument to love built by Emperor Shah Jahan. The ivory-white marble mausoleum is a masterpiece of Mughal architecture.',
+                        history: 'Built between 1632-1653, the Taj Mahal is an ivory-white marble mausoleum. It\'s considered the greatest architectural achievement of the Mughal era. The monument was built by Emperor Shah Jahan in memory of his beloved wife Mumtaz Mahal.',
+                        bestTime: 'October to March',
+                        image: 'https://www.travelandleisure.com/thmb/wdUcyBQyQ0wUVs4wLahp0iWgZhc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/taj-mahal-agra-india-TAJ0217-9eab8f20d11d4391901867ed1ce222b8.jpg',
+                        imageThumb: 'https://www.travelandleisure.com/thmb/wdUcyBQyQ0wUVs4wLahp0iWgZhc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/taj-mahal-agra-india-TAJ0217-9eab8f20d11d4391901867ed1ce222b8.jpg',
+                        imageFull: 'https://www.travelandleisure.com/thmb/wdUcyBQyQ0wUVs4wLahp0iWgZhc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/taj-mahal-agra-india-TAJ0217-9eab8f20d11d4391901867ed1ce222b8.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.838643899236!2d78.04235!3d27.17357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974b41b10d3d0ad%3A0x6d93329ab35b62!2sTaj%20Mahal!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Varanasi Ghats',
+                        location: 'Varanasi',
+                        type: 'Spiritual Site',
+                        emoji: '🏛️',
+                        description: 'Ancient city on the banks of the Ganges River, the holiest place in Hinduism. The ghats are a series of steps leading down to the sacred river.',
+                        history: 'One of the oldest cities in the world, Varanasi is a pilgrimage site for Hindus. The ghats are a series of steps leading down to the Ganges River. Millions of devotees visit annually to bathe in the holy waters.',
+                        bestTime: 'October to March',
+                        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg/250px-Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg',
+                        imageThumb: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg/250px-Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg',
+                        imageFull: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg/250px-Ahilya_Ghat_by_the_Ganges%2C_Varanasi.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.0326451346747!2d82.1038!3d25.3176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e327c1234!2sVaranasi%20Ghats!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Kashi Vishwanath Temple',
+                        location: 'Varanasi',
+                        type: 'Temple',
+                        emoji: '🛕',
+                        description: 'One of the most important temples dedicated to Lord Shiva in Hinduism. Located on the banks of the Ganges River.',
+                        history: 'The temple is one of the twelve Jyotirlingas, representing the divine energy of Lord Shiva. The current structure dates back to 1780.',
+                        bestTime: 'October to March',
+                        image: 'https://i.pinimg.com/736x/dd/e3/f5/dde3f54471c565c4bd68886ab60edfc2.jpg',
+                        imageThumb: 'https://i.pinimg.com/736x/dd/e3/f5/dde3f54471c565c4bd68886ab60edfc2.jpg',
+                        imageFull: 'https://i.pinimg.com/736x/dd/e3/f5/dde3f54471c565c4bd68886ab60edfc2.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.4!2d77.2306!3d28.6505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd0!2sKarims!5e0!3m2!1sen!2sin!4v1702120000'
+                    }
+                ],
+                restaurants: [
+                    {
+                        name: 'Karim\'s Delhi',
+                        location: 'Jama Masjid, Delhi',
+                        cuisine: 'Mughlai',
+                        emoji: '🍖',
+                        description: 'Iconic restaurant serving authentic Mughlai cuisine since 1913. Famous for its nihari and biryani.',
+                        specialty: 'Nihari, Biryani, Kebabs, Korma',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR57cBohZrvb1iyKdE7n5y2-659zy75cCBDyw&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR57cBohZrvb1iyKdE7n5y2-659zy75cCBDyw&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR57cBohZrvb1iyKdE7n5y2-659zy75cCBDyw&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.4!2d77.2306!3d28.6505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd0!2sKarims!5e0!3m2!1sen!2sin!4v1702120000'
+                    }
+                ]
+            },
+            'Tamil Nadu': {
+                color: '#2a2a2a',
+                destinations: [
+                    {
+                        name: 'Meenakshi Temple',
+                        location: 'Madurai',
+                        type: 'Temple',
+                        emoji: '🛕',
+                        description: 'Ancient temple dedicated to goddess Meenakshi, one of the finest examples of Dravidian architecture with intricate gopurams.',
+                        history: 'Dating back to the 12th century, the temple is famous for its intricate gopurams (tower structures) and represents one of the most important pilgrimage sites in South India.',
+                        bestTime: 'October to March',
+                        image: 'https://media.istockphoto.com/id/494308337/photo/meenakshi-hindu-temple-in-madurai-tamil-nadu-south-india.jpg?s=612x612&w=0&k=20&c=xxS6Z6Jh2gTdThofH1HZaO6ey44w1FrJ1PjJfJsy_pI=',
+                        imageThumb: 'https://media.istockphoto.com/id/494308337/photo/meenakshi-hindu-temple-in-madurai-tamil-nadu-south-india.jpg?s=612x612&w=0&k=20&c=xxS6Z6Jh2gTdThofH1HZaO6ey44w1FrJ1PjJfJsy_pI=',
+                        imageFull: 'https://media.istockphoto.com/id/494308337/photo/meenakshi-hindu-temple-in-madurai-tamil-nadu-south-india.jpg?s=612x612&w=0&k=20&c=xxS6Z6Jh2gTdThofH1HZaO6ey44w1FrJ1PjJfJsy_pI=',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.56!2d78.1198!3d9.9252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52a00!2sMeenakshi%20Temple!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Mahabalipuram Beach',
+                        location: 'Chennai District',
+                        type: 'Beach',
+                        emoji: '🏖️',
+                        description: 'Coastal town famous for its ancient temples and rock carvings. A UNESCO World Heritage Site with architectural marvels.',
+                        history: 'An ancient port city with a rich history of art and architecture. Known for its Shore Temple and Five Rathas built during the Pallava dynasty.',
+                        bestTime: 'November to February',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDUktKKv06MIwM-0kQRDFfu9dLp1xwhknDNA&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDUktKKv06MIwM-0kQRDFfu9dLp1xwhknDNA&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDUktKKv06MIwM-0kQRDFfu9dLp1xwhknDNA&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.2!2d80.1926!3d12.6269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525!2sMahabalipuram!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'mahabalipuram beach',
+                        location: 'Thanjavur',
+                        type: 'Temple',
+                        emoji: '🏛️',
+                        description: 'A magnificent 11th-century temple built during the Chola dynasty. Known for its imposing tower and artistic sculptures.',
+                        history: 'Built by Raja Raja Chola I in 1010 CE, it is one of the greatest examples of Dravidian architecture and is a UNESCO World Heritage Site.',
+                        bestTime: 'October to March',
+                        image: 'https://www.holidify.com/images/cmsuploads/compressed/510420922512bebca46d0b_20220125162140.jpeg',
+                        imageThumb: 'https://www.holidify.com/images/cmsuploads/compressed/510420922512bebca46d0b_20220125162140.jpeg',
+                        imageFull: 'https://www.holidify.com/images/cmsuploads/compressed/510420922512bebca46d0b_20220125162140.jpeg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.369605331612!2d79.12929297570336!3d10.782978009071439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab89f48fe1221%3A0x1d23cb40e55d84d6!2sBrihadeeswara%20Temple!5e0!3m2!1sen!2sin!4v1765204092913!5m2!1sen!2sin'
+                    }
+                ],
+                restaurants: [
+                    {
+                        name: 'Saravana Bhavan',
+                        location: 'Madurai',
+                        cuisine: 'South Indian',
+                        emoji: '🍛',
+                        description: 'Popular chain serving authentic South Indian vegetarian food. Known for crispy dosas and fluffy idlis.',
+                        specialty: 'Dosa, Idli, Sambar, Rasam, Appalam',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_ri25KmF0QAsPpljWpUTnyTNFnCjBIteyQ&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_ri25KmF0QAsPpljWpUTnyTNFnCjBIteyQ&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb_ri25KmF0QAsPpljWpUTnyTNFnCjBIteyQ&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.56!2d78.1198!3d9.9252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52a00!2sSaravana%20Bhavan!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Anjappar Restaurant',
+                        location: 'Madurai',
+                        cuisine: 'South Indian Chettinad',
+                        emoji: '🌶️',
+                        description: 'Authentic Chettinad cuisine restaurant famous for its spicy and flavorful dishes.',
+                        specialty: 'Chettinad Chicken, Biryanis, Kothu Parota',
+                        image: 'https://lh3.googleusercontent.com/fGAFJ051VfD6CpjnJ4XvWuScsGF_dX-CcgAWsDWvHavY_0evXnEGDJFRjDkE_EMhTjHK_6hQ_bgyJo0FW6UDp3OFdxs=w360-rw',
+                        imageThumb: 'https://lh3.googleusercontent.com/fGAFJ051VfD6CpjnJ4XvWuScsGF_dX-CcgAWsDWvHavY_0evXnEGDJFRjDkE_EMhTjHK_6hQ_bgyJo0FW6UDp3OFdxs=w360-rw',
+                        imageFull: 'https://lh3.googleusercontent.com/fGAFJ051VfD6CpjnJ4XvWuScsGF_dX-CcgAWsDWvHavY_0evXnEGDJFRjDkE_EMhTjHK_6hQ_bgyJo0FW6UDp3OFdxs=w360-rw',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125759.77450554312!2d78.04317567747117!3d9.934543675897034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c42d5e4eb069%3A0xe42d64625d22cc5f!2sAnjappar%20Chettinad%20Restaurant!5e0!3m2!1sen!2sin!4v1765204306050!5m2!1sen!2sin'
+                    }
+                ]
+            },
+            'Karnataka': {
+                color: '#2a2a2a',
+                destinations: [
+                    {
+                        name: 'Hampi Ruins',
+                        location: 'Hospet District',
+                        type: 'UNESCO Site',
+                        emoji: '🗿',
+                        description: 'Ancient ruins of the Vijayanagara Empire, a UNESCO World Heritage Site with over 1600 monuments.',
+                        history: 'Once the capital of the powerful Vijayanagara Empire, Hampi is home to over 1600 monuments spread across 4,100 hectares. Built in the 14th century.',
+                        bestTime: 'October to March',
+                        image: 'https://indiaholidaymall.com/images/blog/Exploring-the-Enchanting-Ruins-of-Hampi.jpg',
+                        imageThumb: 'https://indiaholidaymall.com/images/blog/Exploring-the-Enchanting-Ruins-of-Hampi.jpg',
+                        imageFull: 'https://indiaholidaymall.com/images/blog/Exploring-the-Enchanting-Ruins-of-Hampi.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3824.8!2d76.4644!3d15.3349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb!2sHampi!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Mysore Palace',
+                        location: 'Mysore',
+                        type: 'Palace',
+                        emoji: '👑',
+                        description: 'Magnificent royal palace of the Wodeyar dynasty, a stunning Indo-Saracenic structure. One of the most visited historical monuments.',
+                        history: 'Built in 1897, the palace is a blend of Hindu, Mughal, and Gothic architecture. It remains one of the most visited historical monuments in India.',
+                        bestTime: 'June to October',
+                        image: 'https://live.staticflickr.com/7227/7185748061_a2f2eaa9a0_b.jpg',
+                        imageThumb: 'https://live.staticflickr.com/7227/7185748061_a2f2eaa9a0_b.jpg',
+                        imageFull: 'https://live.staticflickr.com/7227/7185748061_a2f2eaa9a0_b.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.9!2d75.3602!3d12.2958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf2f!2sMysore%20Palace!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Jog Falls',
+                        location: 'Shimoga District',
+                        type: 'Waterfall',
+                        emoji: '💧',
+                        description: 'One of the highest plunge waterfalls in India, cascading from a height of 830 feet. A spectacular natural wonder.',
+                        history: 'Created by the Sharavathi River, Jog Falls is the second highest plunge waterfall in India and a major tourist attraction.',
+                        bestTime: 'June to September',
+                        image: 'https://caleidoscope.in/wp-content/uploads/2021/05/Jog-Falls-near-Shimoga.jpg',
+                        imageThumb: 'https://caleidoscope.in/wp-content/uploads/2021/05/Jog-Falls-near-Shimoga.jpg',
+                        imageFull: 'https://caleidoscope.in/wp-content/uploads/2021/05/Jog-Falls-near-Shimoga.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3867.4977788843953!2d74.8092566!3d14.224159499999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbc0dbba4914849%3A0xb1a1dc2d7dfe13fb!2sJog%20Falls!5e0!3m2!1sen!2sin!4v1765204345986!5m2!1sen!2sin'
+                    }
+                ],
+                restaurants: [
+                    {
+                        name: 'Karavali Coastal Cuisine',
+                        location: 'Bangalore',
+                        cuisine: 'Coastal Indian',
+                        emoji: '🦞',
+                        description: 'Fine dining restaurant featuring authentic coastal cuisine from India.',
+                        specialty: 'Seafood, Spice-forward dishes, Crab Curries',
+                        image: 'https://static.where-e.com/India/Karnataka_State/Ananth_Nagar_1st_Stage/Karavali-Seafood-Ac-Family-Restaurant_7134cef4189f15876c8c39cf20ceea60.jpg',
+                        imageThumb: 'https://static.where-e.com/India/Karnataka_State/Ananth_Nagar_1st_Stage/Karavali-Seafood-Ac-Family-Restaurant_7134cef4189f15876c8c39cf20ceea60.jpg',
+                        imageFull: 'https://static.where-e.com/India/Karnataka_State/Ananth_Nagar_1st_Stage/Karavali-Seafood-Ac-Family-Restaurant_7134cef4189f15876c8c39cf20ceea60.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.23!2d77.6245!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae!2sKaravali!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'MTR Grand hotel',
+                        location: 'Bangalore',
+                        cuisine: 'South Indian',
+                        emoji: '🥘',
+                        description: 'Legendary restaurant famous for South Indian breakfast and filter coffee.',
+                        specialty: 'Dosa, Idli, Puttu, Filter Coffee',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN0rTB0xAZgWosQK1grX3yP-CPSKAl88U0lw&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN0rTB0xAZgWosQK1grX3yP-CPSKAl88U0lw&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN0rTB0xAZgWosQK1grX3yP-CPSKAl88U0lw&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16798.028730151094!2d77.57726690618448!3d12.957969456805301!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15dda4a3a569%3A0xde94c3a7899fc902!2sMTR!5e0!3m2!1sen!2sin!4v1765204411937!5m2!1sen!2sin'
+                    }
+                ]
+            },
+            'Rajasthan': {
+                color: '#2a2a2a',
+                destinations: [
+                    {
+                        name: 'City Palace',
+                        location: 'Jaipur',
+                        type: 'Palace',
+                        emoji: '🏰',
+                        description: 'Magnificent palace blending Rajasthani and Mughal architecture. Still partially the residence of the royal family.',
+                        history: 'Built in 1729, the City Palace is still partially the residence of the royal family. It represents a beautiful fusion of Rajasthani and Mughal architectural styles.',
+                        bestTime: 'October to March',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe6odH4I784kO8CGe8QPWjnklvnvJ7RdmZtQ&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe6odH4I784kO8CGe8QPWjnklvnvJ7RdmZtQ&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe6odH4I784kO8CGe8QPWjnklvnvJ7RdmZtQ&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.0!2d75.8244!3d26.9245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c!2sCity%20Palace!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Hawa Mahal',
+                        location: 'Jaipur',
+                        type: 'Monument',
+                        emoji: '🏛️',
+                        description: 'The iconic pink Palace of Winds with 953 small windows. A symbol of Jaipur and a marvel of Rajasthani architecture.',
+                        history: 'Built in 1799, the Hawa Mahal was designed to allow royal women to observe street life without being seen. It\'s an iconic symbol of Jaipur.',
+                        bestTime: 'October to March',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81GsvMnuHfqK1Nau9_xl5KdhId_PNlVrPnQ&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81GsvMnuHfqK1Nau9_xl5KdhId_PNlVrPnQ&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81GsvMnuHfqK1Nau9_xl5KdhId_PNlVrPnQ&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.07!2d75.8257!3d26.9245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c!2sHawa%20Mahal!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Mehrangarh Fort',
+                        location: 'Jodhpur',
+                        type: 'Fort',
+                        emoji: '🏯',
+                        description: 'One of the largest forts in India, perched on a hill. Known for its imposing structure and panoramic views.',
+                        history: 'Built in 1459 by Rao Jodha, the fort is known for its thick walls and intricately carved latticed windows.',
+                        bestTime: 'October to March',
+                        image: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Mehrangarh_Fort_sanhita.jpg',
+                        imageThumb: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Mehrangarh_Fort_sanhita.jpg',
+                        imageFull: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Mehrangarh_Fort_sanhita.jpg',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14307.160821940593!2d73.01401406313614!3d26.30090031873544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39418db7f5a4e8d5%3A0x91c3eb1d93338906!2sMehrangarh%20Fort!5e0!3m2!1sen!2sin!4v1765204486726!5m2!1sen!2sin'
+                    }
+                ],
+                restaurants: [
+                    {
+                        name: 'Hanuman Cafe',
+                        location: 'Jaipur',
+                        cuisine: 'Rajasthani',
+                        emoji: '🌶️',
+                        description: 'Authentic Rajasthani restaurant with traditional decor and recipes passed down generations.',
+                        specialty: 'Gatte Ki Sabzi, Dal Baati Churma, Bajra Roti',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD_HrjYfUwWm9YDvFFP55-B9Oc6MvpK1henQ&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD_HrjYfUwWm9YDvFFP55-B9Oc6MvpK1henQ&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD_HrjYfUwWm9YDvFFP55-B9Oc6MvpK1henQ&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.0!2d75.8244!3d26.9245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c!2sHanuman%20Cafe!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Lassiwala',
+                        location: 'Jaipur',
+                        cuisine: 'Traditional Indian',
+                        emoji: '🥛',
+                        description: 'Famous for authentic lassi and traditional Rajasthani snacks and sweets.',
+                        specialty: 'Lassi, Sweets, Chaat Items',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw6P5mAtzGk_-3wMzNNMkpPt88cJzc_Dd4lA&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw6P5mAtzGk_-3wMzNNMkpPt88cJzc_Dd4lA&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw6P5mAtzGk_-3wMzNNMkpPt88cJzc_Dd4lA&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.5901535175135!2d75.80853137597171!3d26.916499359926927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db6abbdb7af19%3A0xac9ae97dffa66cc2!2sLassiwala%20%C2%AE%EF%B8%8F%20Kishan%20lal%20Govind%20Narain%20Agarwal!5e0!3m2!1sen!2sin!4v1765204527533!5m2!1sen!2sin'
+                    }
+                ]
+            },
+            'Andhra Pradesh': {
+                color: '#2a2a2a',
+                destinations: [
+                    {
+                        name: 'Tirupati Temple',
+                        location: 'Tirupati',
+                        type: 'Temple',
+                        emoji: '🛕',
+                        description: 'One of the most visited temples in the world, dedicated to Lord Venkateswara. Considered the richest temple globally.',
+                        history: 'Built over 1200 years ago on a sacred hill, the Tirupati Temple attracts millions of devotees annually. It\'s considered the richest temple in the world.',
+                        bestTime: 'July to September, January to February',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4apnI4YSHHYp2N5S8WJDWZMt1VNkymBor7Q&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4apnI4YSHHYp2N5S8WJDWZMt1VNkymBor7Q&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4apnI4YSHHYp2N5S8WJDWZMt1VNkymBor7Q&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3904.5!2d79.5585!3d13.1827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d!2sTirupati%20Temple!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Visakhapatnam Beach',
+                        location: 'Visakhapatnam',
+                        type: 'Beach',
+                        emoji: '🏖️',
+                        description: 'Beautiful coastal city with pristine beaches and natural beauty. Features the famous submarine museum.',
+                        history: 'A major port city on the Bay of Bengal, Visakhapatnam combines natural beauty with cultural heritage. Popular for its submarine museum and beautiful beaches.',
+                        bestTime: 'October to March',
+                        image: 'https://i0.wp.com/traveldreams.live/wp-content/uploads/2025/02/35.jpg?resize=864%2C485&ssl=1',
+                        imageThumb: 'https://i0.wp.com/traveldreams.live/wp-content/uploads/2025/02/35.jpg?resize=864%2C485&ssl=1',
+                        imageFull: 'https://i0.wp.com/traveldreams.live/wp-content/uploads/2025/02/35.jpg?resize=864%2C485&ssl=1',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.9!2d83.3185!3d17.6869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39!2sVisakhapatnam%20Beach!5e0!3m2!1sen!2sin!4v1702120000'
+                    },
+                    {
+                        name: 'Charminar',
+                        location: 'Hyderabad',
+                        type: 'Monument',
+                        emoji: '🏛️',
+                        description: 'Iconic monument built in 1591, a symbol of Hyderabad. Known for its architectural magnificence and historical importance.',
+                        history: 'Built by Muhammad Quli Qutb Shah, the Charminar is one of the most recognized monuments in India. It stands in the heart of Hyderabad.',
+                        bestTime: 'October to March',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY1cibpFs-_skVALcp59UB5v5fCBwxS3ZyZA&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY1cibpFs-_skVALcp59UB5v5fCBwxS3ZyZA&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY1cibpFs-_skVALcp59UB5v5fCBwxS3ZyZA&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.0450816155394!2d78.4746645!3d17.3615636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb978a6e1a939b%3A0xcb5a69e4aaf113fb!2sCharminar!5e0!3m2!1sen!2sin!4v1765204567138!5m2!1sen!2sin'
+                    }
+                ],
+                restaurants: [
+                    {
+                        name: 'Amaravathi Kitchen',
+                        location: 'Hyderabad',
+                        cuisine: 'Andhra Cuisine',
+                        emoji: '🍲',
+                        description: 'Authentic Andhra restaurant serving fiery and flavorful dishes that represent regional cuisine.',
+                        specialty: 'Biryani, Gongura Chicken, Philu Curry, Chikhalwali',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVq0sIx9PqpBc-yQP23bBo0vHbnn1AryoRQ&s',
+                        imageThumb: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVq0sIx9PqpBc-yQP23bBo0vHbnn1AryoRQ&s',
+                        imageFull: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMVq0sIx9PqpBc-yQP23bBo0vHbnn1AryoRQ&s',
+                        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.5!2d78.4744!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb!2sAmaravathi%20Kitchen!5e0!3m2!1sen!2sin!4v1702120000'
+                    }
+                ]
+            }
+        };
+
+        // Initialize the page
+        function init() {
+            createStateTabs();
+            createDestinationSections();
+            setupEventListeners();
+        }
+
+        // Create state tabs
+        function createStateTabs() {
+            const tabsContainer = document.getElementById('stateTabs');
+            tabsContainer.innerHTML = '';
+
+            Object.keys(touristicData).forEach((state, index) => {
+                const btn = document.createElement('button');
+                btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+                btn.textContent = state;
+                btn.onclick = () => showState(state);
+                tabsContainer.appendChild(btn);
+            });
+
+            // Add About button
+            const aboutBtn = document.createElement('button');
+            aboutBtn.className = 'tab-btn';
+            aboutBtn.textContent = 'About Us';
+            aboutBtn.onclick = showAbout;
+            tabsContainer.appendChild(aboutBtn);
+        }
+
+        // Create destination sections
+        function createDestinationSections() {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = '';
+
+            Object.keys(touristicData).forEach(state => {
+                const section = document.createElement('section');
+                section.className = 'destination-section';
+                section.id = `state-${state}`;
+                section.innerHTML = `
+                    <h2 class="section-title">🌟 ${state}</h2>
+                    <h3 style="color: white; margin: 2rem 0 1rem 0; font-size: 1.3rem;">Tourist Attractions</h3>
+                    <div class="cards-grid" id="destinations-${state}"></div>
+                    <h3 style="color: white; margin: 2rem 0 1rem 0; font-size: 1.3rem;">🍽️ Best Restaurants</h3>
+                    <div class="cards-grid" id="restaurants-${state}"></div>
+                `;
+                contentArea.appendChild(section);
+            });
+
+            // Populate cards
+            populateCards();
+
+            // Show first state
+            document.getElementById(`state-${Object.keys(touristicData)[0]}`).classList.add('active');
+        }
+
+        // Populate cards with data
+        function populateCards() {
+            Object.keys(touristicData).forEach(state => {
+                const stateData = touristicData[state];
+
+                // Destinations
+                const destContainer = document.getElementById(`destinations-${state}`);
+                stateData.destinations.forEach(dest => {
+                    const card = createCard(dest, 'destination');
+                    destContainer.appendChild(card);
+                });
+
+                // Restaurants
+                const restContainer = document.getElementById(`restaurants-${state}`);
+                stateData.restaurants.forEach(rest => {
+                    const card = createCard(rest, 'restaurant');
+                    restContainer.appendChild(card);
+                });
+            });
+        }
+
+        // Create a card element
+        function createCard(data, type) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            const imageHTML = data.imageThumb ? 
+                `<img src="${data.imageThumb}" alt="${data.name}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                `<div class="image-placeholder">${data.emoji}</div>`;
+            
+            card.innerHTML = `
+                <div class="card-image">${imageHTML}</div>
+                <div class="card-content">
+                    <h3 class="card-title">${data.name}</h3>
+                    <span class="card-type">${data.type || data.cuisine}</span>
+                    <p class="card-description">${data.description}</p>
+                    <div class="card-info">
+                        <span>📍 ${data.location}</span>
+                        ${data.bestTime ? `<span>📅 ${data.bestTime}</span>` : ''}
+                        ${data.specialty ? `<span>⭐ ${data.specialty}</span>` : ''}
+                    </div>
+                    <div class="card-buttons">
+                        <button class="btn btn-primary" onclick="showDetails(${JSON.stringify(data).replace(/"/g, '&quot;')}, '${type}')">View Details</button>
+                        <button class="btn btn-secondary" onclick="openMaps('${data.mapEmbed}')">📍 Map</button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Show state
+        function showState(state) {
+            // Hide about section
+            document.getElementById('aboutSection').classList.remove('active');
+
+            // Update tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Hide all sections
+            document.querySelectorAll('.destination-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected state
+            document.getElementById(`state-${state}`).classList.add('active');
+        }
+
+        // Show about
+        function showAbout() {
+            document.querySelectorAll('.destination-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('aboutSection').classList.add('active');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Show details in modal
+        function showDetails(data, type) {
+            const modal = document.getElementById('detailsModal');
+            document.getElementById('modalTitle').textContent = data.name;
+
+            let detailsHTML = ``;
+            
+            // Show full image if available
+            if (data.imageFull) {
+                detailsHTML += `
+                    <div style="margin-bottom: 1.5rem;">
+                        <img src="${data.imageFull}" alt="${data.name}" style="width: 100%; border-radius: 8px; max-height: 300px; object-fit: cover;" onerror="this.src='https://images.pexels.com/photos/3532555/pexels-photo-3532555.jpeg?auto=compress&cs=tinysrgb&w=800';">
+                    </div>
+                `;
+            }
+            
+            detailsHTML += `
+                <div class="modal-info">
+                    <strong>Location:</strong> ${data.location}
+                </div>
+                <div class="modal-info">
+                    <strong>Type:</strong> ${data.type || data.cuisine}
+                </div>
+                <div class="modal-info">
+                    <strong>Description:</strong> ${data.description}
+                </div>
+            `;
+
+            if (type === 'destination') {
+                detailsHTML += `
+                    <div class="modal-info">
+                        <strong>History:</strong> ${data.history}
+                    </div>
+                    <div class="modal-info">
+                        <strong>Best Time to Visit:</strong> ${data.bestTime}
+                    </div>
+                `;
+            } else if (type === 'restaurant') {
+                detailsHTML += `
+                    <div class="modal-info">
+                        <strong>Specialty:</strong> ${data.specialty}
+                    </div>
+                `;
+            }
+
+            detailsHTML += `
+                <div style="margin-top: 1.5rem;">
+                    <iframe width="100%" height="300" style="border-radius: 8px; border: none;" src="${data.mapEmbed}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            `;
+
+            document.getElementById('modalDetails').innerHTML = detailsHTML;
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('detailsModal').classList.remove('active');
+        }
+
+        // Open maps
+        function openMaps(mapEmbed) {
+            const modal = document.getElementById('detailsModal');
+            document.getElementById('modalTitle').textContent = 'Location Map';
+            document.getElementById('modalDetails').innerHTML = `
+                <iframe width="100%" height="400" style="border-radius: 8px; border: none;" src="${mapEmbed}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            `;
+            modal.classList.add('active');
+        }
+
+        // Global search functionality
+        function performGlobalSearch() {
+            const searchTerm = document.getElementById('globalSearch').value.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                alert('Please enter a search term');
+                return;
+            }
+
+            let results = [];
+            
+            Object.keys(touristicData).forEach(state => {
+                const stateData = touristicData[state];
+                
+                stateData.destinations.forEach(dest => {
+                    if (dest.name.toLowerCase().includes(searchTerm) || 
+                        dest.location.toLowerCase().includes(searchTerm) ||
+                        dest.description.toLowerCase().includes(searchTerm)) {
+                        results.push({ ...dest, state, type: 'destination' });
+                    }
+                });
+
+                stateData.restaurants.forEach(rest => {
+                    if (rest.name.toLowerCase().includes(searchTerm) || 
+                        rest.location.toLowerCase().includes(searchTerm) ||
+                        rest.cuisine.toLowerCase().includes(searchTerm)) {
+                        results.push({ ...rest, state, type: 'restaurant' });
+                    }
+                });
+            });
+
+            if (results.length === 0) {
+                alert('No results found for: ' + searchTerm);
+                return;
+            }
+
+            // Display results
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = `
+                <h2 class="section-title">Search Results for "${searchTerm}"</h2>
+                <p style="color: white; margin-bottom: 1.5rem;">Found ${results.length} result(s)</p>
+                <div class="cards-grid" id="searchResults"></div>
+            `;
+
+            const resultsContainer = document.getElementById('searchResults');
+            results.forEach(result => {
+                const card = createCard(result, result.type);
+                resultsContainer.appendChild(card);
+            });
+
+            // Hide about section
+            document.getElementById('aboutSection').classList.remove('active');
+
+            // Update active tab
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('globalSearch').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performGlobalSearch();
+                }
+            });
+
+            document.getElementById('nav-home').addEventListener('click', (e) => {
+                e.preventDefault();
+                location.reload();
+            });
+
+            document.getElementById('nav-about').addEventListener('click', (e) => {
+                e.preventDefault();
+                showAbout();
+            });
+
+            // Close modal when clicking outside
+            document.getElementById('detailsModal').addEventListener('click', (e) => {
+                if (e.target.id === 'detailsModal') {
+                    closeModal();
+                }
+            });
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
